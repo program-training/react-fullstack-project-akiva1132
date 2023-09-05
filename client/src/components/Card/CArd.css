@@ -1,0 +1,14 @@
+.card{
+    width: 200px;
+    display: flex;
+    border: 3px black solid;
+    margin: 10px;
+    border-radius: 20px;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around
+}
+.img{
+    width: 150px;
+}
