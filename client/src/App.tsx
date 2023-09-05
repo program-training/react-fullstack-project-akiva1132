@@ -1,29 +1,22 @@
 import './App.css'
-import { Home } from "./components/Home/Home.tsx"
-import { useState, useContext } from 'react';
-import { Trips } from "./components/Trips/Trips.tsx"
 import TripContextProvider from "./DataContex.tsx"
-import PageManagementContextProvider from "./PageManagementContex.tsx"
-import { pageManagementContex } from "./PageManagementContex.tsx"
-import PageManagement from "./components/PageManagement/Page management.tsx"
+import RouteContexProvider from "./RouteContex.tsx"
+import Routing from "./components/Routing/Routing.tsx"
 
 
 
 
 function App() {
-  const [mode, showingAllTrips] = useState<boolean>(false);
   // {const PageManagementContex = useContext(pageManagementContex)}
   return (
-    <PageManagementContextProvider>
-      <TripContextProvider>
+    <TripContextProvider>
+      <RouteContexProvider>
         <div>
-        <PageManagement />
+          <Routing />
         </div>
-      </TripContextProvider>
-    </PageManagementContextProvider>
-
+      </RouteContexProvider>
+    </TripContextProvider>
 
   )
 }
-
 export default App

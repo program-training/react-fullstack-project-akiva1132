@@ -1,18 +1,18 @@
 import { useContext } from "react";
-import { pageManagementContex } from "../../PageManagementContex"
+import { RouteContex } from "../../RouteContex"
 import "./Home.css"
 
 export const Home: React.FC = () => {
-    const PageManagementContex = useContext(pageManagementContex);
-    if (!PageManagementContex) return null;
-    const  setDeletPage  = PageManagementContex.setDeletPage
+    const routeContex = useContext(RouteContex);
+    if (!routeContex) return null;
+    const setModeRoute = routeContex.setModeRoute
     return (
         <div >
             <button
-                onClick={() => setDeletPage(true)} className="button">all trips
+                onClick={() => setModeRoute("Trips")} className="button">all trips
             </button>
             <button
-                onClick={() => setDeletPage(false)}
+                onClick={() => setModeRoute("Home")}
                 className="button">log in
             </button>
             <button className="button">registration</button>

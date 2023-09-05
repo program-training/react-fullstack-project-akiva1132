@@ -1,7 +1,7 @@
 import "./CArd.css"
 import { useContext } from 'react';
 import { TripContex } from "../../DataContex"
-import { pageManagementContex } from "../../PageManagementContex"
+import { RouteContex } from "../../RouteContex"
 interface Trip {
     id: string
     name: string
@@ -19,12 +19,11 @@ interface Props {
 const header = new Headers();
 header.append("authorization", "test-token");
 export const Card: React.FC<Props> = (props: Props) => {
+    
+    const routeContex = useContext(RouteContex);
+    if (!routeContex) return null;
+    const setModeRoute = routeContex.setModeRoute
     const tripcontext = useContext(TripContex);
-    const PageManagementContex = useContext(pageManagementContex);
-    if (!PageManagementContex) return null;
-    const  setDeletPage  = PageManagementContex.setDeletPage
-
-
     if (!tripcontext) return null;
     const { setClick } = tripcontext
     const { clickDelete } = tripcontext
@@ -38,7 +37,8 @@ export const Card: React.FC<Props> = (props: Props) => {
                         .then(data => data.json())
                         .then(() => setClick(clickDelete + 1))
                 }>delete</button>
-                <button onClick={() => setDeletPage(false)}
+                <button onClick={() => setModeRoute("TripUpdate" + props.trip.id)}>TripUpdate</button>
+                <button onClick={() => setModeRoute(`TripDetails${props.trip.id}`)}
                 >Detail</button>
             </div>
 

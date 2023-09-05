@@ -1,0 +1,17 @@
+#details{
+    display: flex;
+    width: 400px;
+    min-height: 450px;
+    border: 2px blue solid;
+    border-radius: 20px;
+    margin: 30px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+img{
+    width: 400px;
+    height: max-content;
+    border-radius: 20px 20px 0px 0px;
+}
