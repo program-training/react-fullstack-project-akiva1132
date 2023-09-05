@@ -17,7 +17,7 @@ export const Trips: React.FC = () => {
     if (trips) {
         return (
             <div>
-                <button onClick={() => setModeRoute("TripUpdate")}>NewTrip</button>
+                <button onClick={() => setModeRoute("newTrip")}>NewTrip</button>
                 <div id='trips' >
                     {trips.map((trip) => <Card key={trip.id} trip={trip}></Card>)}
                 </div></div>

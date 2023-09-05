@@ -1,7 +1,7 @@
 import { useContext, useState, FormEvent, useEffect } from 'react';
 import { RouteContex } from "../../RouteContex"
 import { TripContex } from "../../DataContex"
-import "./NewTrip.css"
+import "./TripUpdate.css"
 
 interface TriprContex {
     "id": string
@@ -31,6 +31,8 @@ export const TripUpdate = (props: Props) => {
             })
     }
         , [])
+        console.log(trip);
+        
     const routeContex = useContext(RouteContex);
     if (!routeContex) return null;
     const setModeRoute = routeContex.setModeRoute
@@ -53,21 +55,29 @@ export const TripUpdate = (props: Props) => {
             <form onSubmit={handleSubmit} >
                 <div id='forms'>
                     <input
-                        value={trip.id}
-                        onChange={(e) => settrip({ ...trip, ["id"]: e.target.value })}
-                        className="input" type="text" placeholder="enter id" />
-                    <input
-                        value={trip.activities}
-                        onChange={(e) => settrip({ ...trip, ["activities"]: e.target.value })}
-                        className="input" type="text" placeholder="enter activities" />
-                    <input
                         value={trip.description}
                         onChange={(e) => settrip({ ...trip, ["description"]: e.target.value })}
                         className="input" type="text" placeholder="enter description" />
                     <input
-                        value={trip.name}
-                        onChange={(e) => settrip({ ...trip, ["name"]: e.target.value })}
-                        className="input" type="text" placeholder="enter name" />
+                        value={trip.destination}
+                        onChange={(e) => settrip({ ...trip, ["destination"]: e.target.value })}
+                        className="input" type="text" placeholder="enter activities" />
+                    <input
+                        value={trip.endDate}
+                        onChange={(e) => settrip({ ...trip, ["endDate"]: e.target.value })}
+                        className="input" type="text" placeholder="enter endDate" />
+                    <input
+                        value={trip.image}
+                        onChange={(e) => settrip({ ...trip, ["image"]: e.target.value })}
+                        className="input" type="text" placeholder="enter image" />
+                        <input
+                        value={trip.price}
+                        onChange={(e) => settrip({ ...trip, ["price"]: e.target.value })}
+                        className="input" type="text" placeholder="enter price" />
+                        <input
+                        value={trip.startDate}
+                        onChange={(e) => settrip({ ...trip, ["startDate"]: e.target.value })}
+                        className="input" type="text" placeholder="enter startDate" />
                 </div>
                 <button >ok</button>
             </form>

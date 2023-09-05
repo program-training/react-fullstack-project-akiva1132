@@ -1,9 +1,10 @@
 import { Home } from "../Home/Home.tsx"
 import { useContext } from 'react';
 import { Trips } from "../Trips/Trips.tsx"
-import {TripUpdate} from "../NewTrip/TripUpdate.tsx"
+import {TripUpdate} from "../TripUpdate/TripUpdate.tsx"
 import { RouteContex } from "../../RouteContex.tsx"
 import { TripDetails } from "../TripDetail/TripDetail.tsx"
+import {NewTrip} from "../NewTrip/NewTrip.tsx"
 
 
 function Routing() {
@@ -17,6 +18,7 @@ function Routing() {
         <div>
             {modeRoute === "Home" ? <Home /> : null}
             {modeRoute === "Trips" ? <Trips /> : null}
+            {modeRoute === "newTrip" ? <NewTrip/> : null}
             {modeRoute.includes("TripUpdate") ? <TripUpdate id={
                 modeRoute.slice(10)
             }/> : null}

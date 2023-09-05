@@ -39,6 +39,9 @@ export const TripDetails = (props: Props) => {
                     <p>{trip.name}</p>
                     <p>{trip.activities}</p>
                     <p>{trip.description}</p>
+                    <p>{trip.endDate}</p>
+                    <p>{trip.startDate}</p>
+                    <p>{trip.price}</p>
                 </div>
             </div>
         </div>
