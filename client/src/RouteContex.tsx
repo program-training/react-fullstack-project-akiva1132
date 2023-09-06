@@ -9,7 +9,6 @@ interface PageManagementContexType {
 interface themeContextProviderProps {
     children: React.ReactNode;
 }
-
 export const RouteContex = createContext<PageManagementContexType | null>(null);
 
 const RouteContexProvider: React.FC<themeContextProviderProps> = (props) => {

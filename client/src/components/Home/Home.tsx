@@ -12,10 +12,13 @@ export const Home: React.FC = () => {
                 onClick={() => setModeRoute("Trips")} className="button">all trips
             </button>
             <button
-                onClick={() => setModeRoute("Home")}
+                onClick={() => {setModeRoute("UserLogIn")}}
                 className="button">log in
             </button>
-            <button className="button">registration</button>
+            <button
+            onClick={() => {setModeRoute("Register")}}
+
+            className="button">registration</button>
         </div>
     );
 };

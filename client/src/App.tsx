@@ -1,6 +1,7 @@
 import './App.css'
 import TripContextProvider from "./DataContex.tsx"
 import RouteContexProvider from "./RouteContex.tsx"
+import KeyContexProvider from "./UserLoginComtex.tsx"
 import Routing from "./components/Routing/Routing.tsx"
 
 
@@ -11,9 +12,11 @@ function App() {
   return (
     <TripContextProvider>
       <RouteContexProvider>
+        <KeyContexProvider>
         <div>
           <Routing />
         </div>
+        </KeyContexProvider>
       </RouteContexProvider>
     </TripContextProvider>
 

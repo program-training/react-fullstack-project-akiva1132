@@ -2,6 +2,7 @@ import "./CArd.css"
 import { useContext } from 'react';
 import { TripContex } from "../../DataContex"
 import { RouteContex } from "../../RouteContex"
+import { KeyContex } from "../../UserLoginComtex"
 interface Trip {
     id: string
     name: string
@@ -16,9 +17,14 @@ interface Trip {
 interface Props {
     trip: Trip
 }
-const header = new Headers();
-header.append("authorization", "test-token");
+
 export const Card: React.FC<Props> = (props: Props) => {
+    const keyContex = useContext(KeyContex);
+    if (!keyContex) return null;
+    const key = keyContex.key
+
+    const header = new Headers();
+    header.append("authorization", key);
     
     const routeContex = useContext(RouteContex);
     if (!routeContex) return null;

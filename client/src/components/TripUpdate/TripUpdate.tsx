@@ -1,6 +1,7 @@
 import { useContext, useState, FormEvent, useEffect } from 'react';
 import { RouteContex } from "../../RouteContex"
 import { TripContex } from "../../DataContex"
+import { KeyContex } from "../../UserLoginComtex"
 import "./TripUpdate.css"
 
 interface TriprContex {
@@ -17,11 +18,17 @@ interface TriprContex {
 interface Props {
     id: string
 }
-const header = new Headers();
-header.append("authorization", "test-token");
-header.append("Content-Type", "application/json");
+
 
 export const TripUpdate = (props: Props) => {
+    const keyContex = useContext(KeyContex);
+    if (!keyContex) return null;
+    const key = keyContex.key
+    const header = new Headers();
+    header.append("authorization", key);
+    header.append("Content-Type", "application/json");
+
+    
     const [trip, settrip] = useState<TriprContex | null | any>(null);
     useEffect(() => {
         fetch(`http://127.0.0.1:3000/api/trips/${props.id}`)
@@ -58,6 +65,10 @@ export const TripUpdate = (props: Props) => {
                         value={trip.description}
                         onChange={(e) => settrip({ ...trip, ["description"]: e.target.value })}
                         className="input" type="text" placeholder="enter description" />
+                        <input
+                        value={trip.name}
+                        onChange={(e) => settrip({ ...trip, ["name"]: e.target.value })}
+                        className="input" type="text" placeholder="enter name" />
                     <input
                         value={trip.destination}
                         onChange={(e) => settrip({ ...trip, ["destination"]: e.target.value })}

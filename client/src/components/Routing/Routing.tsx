@@ -5,6 +5,8 @@ import {TripUpdate} from "../TripUpdate/TripUpdate.tsx"
 import { RouteContex } from "../../RouteContex.tsx"
 import { TripDetails } from "../TripDetail/TripDetail.tsx"
 import {NewTrip} from "../NewTrip/NewTrip.tsx"
+import {UserLogIn} from "../UserLogIn/UserLogIn.tsx"
+import {Register} from "../Register/Register.tsx"
 
 
 function Routing() {
@@ -19,6 +21,8 @@ function Routing() {
             {modeRoute === "Home" ? <Home /> : null}
             {modeRoute === "Trips" ? <Trips /> : null}
             {modeRoute === "newTrip" ? <NewTrip/> : null}
+            {modeRoute === "Register" ? <Register/>: null}
+            {modeRoute === "UserLogIn" ? <UserLogIn/>: null}
             {modeRoute.includes("TripUpdate") ? <TripUpdate id={
                 modeRoute.slice(10)
             }/> : null}
