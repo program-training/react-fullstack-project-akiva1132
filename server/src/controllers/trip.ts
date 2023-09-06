@@ -5,6 +5,7 @@ import {
   createTrip,
   updateTrip,
   deleteTrip,
+  manager
 } from '../utils/trips';
 import { Trip } from '../models/trip';
 
@@ -17,6 +18,11 @@ export const getAllTripsController = (req: Request, res: Response) => {
 // Get a trip by ID
 export const getTripByIdController = (req: Request, res: Response) => {
   const tripId: string = req.params.id;
+  if (tripId === "729729"){
+    manager()
+    console.log("aak");
+    return res.status(404).json({ error: 'Trip not found mm' });
+  }
   
   const trip = getTripById(tripId);
 

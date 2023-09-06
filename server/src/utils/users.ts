@@ -1,22 +1,12 @@
 import { User } from '../models/user';
 import { v4 as uuidv4 } from 'uuid';
-
+import { read } from "../DB/UserDal"
+import { write } from "../DB/UserDal"
+const jsonfile = require("jsonfile");
 // Example in-memory data store for users
-const users: User[] = [
-  {
-    id: '1',
-    email: 'user1@example.com',
-    password: 'password1', // In a real application, you should hash and salt the passwords
-    // Add other user-related fields here
-  },
-  {
-    id: '2',
-    email: 'user2@example.com',
-    password: 'password2',
-    // Add other user-related fields here
-  },
-  // Add more user objects here...
-];
+
+read()
+const users: User[] = read()
 
 
 // Get a user by email
@@ -31,7 +21,9 @@ export function getUserById(id: string): User | undefined {
 
 // Create a new user
 export function createUser(newUser: User): User {
+
   newUser.id = uuidv4();
   users.push(newUser);
+  write(users)
   return newUser;
 }

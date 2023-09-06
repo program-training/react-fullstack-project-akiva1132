@@ -39,7 +39,6 @@ export const TripUpdate = (props: Props) => {
             })
     }
         , [])
-
     const routeContex = useContext(RouteContex);
     if (!routeContex) return null;
     const setModeRoute = routeContex.setModeRoute
