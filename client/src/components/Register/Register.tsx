@@ -1,7 +1,5 @@
 import { useContext, useState, FormEvent, useEffect } from 'react';
 import { RouteContex } from "../../RouteContex"
-import { TripContex } from "../../DataContex"
-import { Card } from "../Card/Card"
 import "./Register.css"
 
 interface TriprContex {
@@ -31,7 +29,6 @@ export const Register: React.FC = () => {
     const setModeRoute = routeContex.setModeRoute
     if (!trip) { return }
     const ShowingKey = (props: Props) => {
-        console.log(props.message);
         return (
             setConfirmMessage(props.message)
         )
@@ -40,17 +37,25 @@ export const Register: React.FC = () => {
         event.preventDefault()
         fetch("http://127.0.0.1:3000/api/auth/Register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(trip), redirect: 'follow' })
             .then(response => response.text())
-            .then(result => ShowingKey(JSON.parse(result))
-            )
+            .then(result => {
+                if (JSON.parse(result).error) {
+                    return setConfirmMessage(JSON.parse(result).error);;
+                } ShowingKey(JSON.parse(result))
+            })
             .catch(error => console.log('error', error));
     }
     return (
         <div id="details">
             {confirmMessage ? <div id="message">
                 <div id='divtext'>{confirmMessage}</div>
-                <button
-                onClick={() => setModeRoute("Home")}
-                 style={{backgroundColor:"blue"}}>Home Page</button>
+                <div id='buttonsDiv'>
+                    <button
+                        onClick={() => setModeRoute("Home")}
+                        style={{ backgroundColor: "blue" }}>Home Page</button>
+                    {confirmMessage === "User already exists" ? <button
+                        onClick={() => setConfirmMessage("")}
+                        style={{ backgroundColor: "blue" }}>re-Register</button> : null}
+                </div>
             </div> : null}
             <form onSubmit={handleSubmit} >
                 <div id='forms'>

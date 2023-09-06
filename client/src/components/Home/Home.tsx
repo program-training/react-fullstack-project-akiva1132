@@ -7,18 +7,18 @@ export const Home: React.FC = () => {
     if (!routeContex) return null;
     const setModeRoute = routeContex.setModeRoute
     return (
-        <div >
+        <div id="divHome" >
             <button
-                onClick={() => setModeRoute("Trips")} className="button">all trips
+                onClick={() => setModeRoute("Trips")} className="buttonHome">all trips
             </button>
             <button
                 onClick={() => {setModeRoute("UserLogIn")}}
-                className="button">log in
+                className="buttonHome">log in
             </button>
             <button
             onClick={() => {setModeRoute("Register")}}
 
-            className="button">registration</button>
+            className="buttonHome">registration</button>
         </div>
     );
 };

@@ -27,3 +27,12 @@
     border: 2px black solid;
     border-radius: 8px;
 }
+#divtext{
+    font-size: 30px;
+}
+#buttonsDiv{
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-content: space-around;
+}

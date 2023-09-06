@@ -25,8 +25,6 @@ interface ObgRes{
     token: string
     user: object
 }
-const header = new Headers();
-header.append("Content-Type", "application/json");
 
 export const UserLogIn: React.FC = () => {
     const [confirmMessage, setConfirmMessage] = useState<string | any>("");
@@ -42,6 +40,8 @@ export const UserLogIn: React.FC = () => {
         if (props.message === undefined) {
             return setConfirmMessage(props.error);
         }
+        console.log(props.responseObj.token)
+        
         setKey(props.responseObj.token);
         return (
             setConfirmMessage(props.message)
@@ -62,9 +62,10 @@ export const UserLogIn: React.FC = () => {
                 <div id='buttonsDiv'><button
                     onClick={() => setModeRoute("Home")}
                     style={{ backgroundColor: "blue" }}>Home Page</button>
-                    <button
-                        onClick={() => setModeRoute("Register")}
-                        style={{ backgroundColor: "blue" }}>re-log in</button></div>
+                    {confirmMessage === "Invalid credentials"?<button
+                        onClick={() => setConfirmMessage("")}
+                        style={{ backgroundColor: "blue" }}>re-log in</button>: null}
+                    </div>
             </div> : null}
             <form onSubmit={handleSubmit} >
                 <div id='forms'>
