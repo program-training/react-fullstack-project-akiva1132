@@ -1,19 +1,8 @@
-import { useContext, useState, FormEvent, useEffect } from 'react';
+import { useContext, useState, FormEvent } from 'react';
 import { RouteContex } from "../../RouteContex"
 import { KeyContex } from "../../UserLoginComtex"
 import "./UserLogIn.css"
 
-interface TriprContex {
-    "id": string
-    "name": string
-    "destination": string
-    "startDate": string
-    "endDate": string
-    "description": string
-    "price": number
-    "image": string
-    "activities": string[]
-}
 interface User {
     "id"?: string
     "email": string
@@ -87,6 +76,5 @@ export const UserLogIn: React.FC = () => {
                 <button >ok</button>
             </form>
         </div>
-
     );
 }
