@@ -10,7 +10,6 @@ const trips: Trip[] =  read()
 
 
 export function getAllTrips(): Partial<Trip>[] {
-  // const trips: Trip[] =  read()
   return trips.map(trip => ({id: trip.id, name: trip.name,destination: trip.destination,startDate: trip.startDate,endDate:trip.endDate,image:trip.image}));
 }
 
