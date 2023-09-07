@@ -32,8 +32,8 @@ export const Card: React.FC<Props> = (props: Props) => {
     const setModeRoute = routeContex.setModeRoute
     const tripcontext = useContext(TripContex);
     if (!tripcontext) return null;
-    const { setClick } = tripcontext
-    const { clickDelete } = tripcontext
+    const { setRefreshTrips } = tripcontext
+    const { refreshTrips } = tripcontext
     return (
         <div className="card">
             {props.trip.name}
@@ -45,7 +45,7 @@ export const Card: React.FC<Props> = (props: Props) => {
                         .then(data => data.json())
                         .then((data) => {
                             if (data.error) { setAuthorizationMessage(true), setTimeout(() => setAuthorizationMessage(false), 400) }
-                            setClick(clickDelete + 1)
+                            setRefreshTrips(refreshTrips + 1)
                         }
                         )
                 }>delete</button>

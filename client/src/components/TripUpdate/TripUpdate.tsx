@@ -21,7 +21,7 @@ interface Props {
 
 
 export const TripUpdate = (props: Props) => {
-    const [confirmMessage, setConfirmMessage] = useState<string | any>("");
+    const [confirmMessage, setConfirmMessage] = useState<string>("");
     const keyContex = useContext(KeyContex);
     if (!keyContex) return null;
     const key = keyContex.key
@@ -45,22 +45,20 @@ export const TripUpdate = (props: Props) => {
     if (!trip) { return }
     const tripcontext = useContext(TripContex);
     if (!tripcontext) return null;
-    const { setClick } = tripcontext
-    const { clickDelete } = tripcontext
+    const { setRefreshTrips } = tripcontext
+    const { refreshTrips } = tripcontext
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault()
         fetch(`http://127.0.0.1:3000/api/trips/${props.id}`, { headers: header, method: "PUT", body: JSON.stringify(trip), redirect: 'follow' })
             .then((data) => data.json())
             .then(result => {
-                console.log(result);
-
                 if (result.error) {
                     return setConfirmMessage(result.error);
                 } setConfirmMessage("sucsses")
             })
             .catch(e => console.log(e)
             )
-        setClick(clickDelete + 1)
+        setRefreshTrips(refreshTrips + 1)
     }
     return (
         <div id="details">

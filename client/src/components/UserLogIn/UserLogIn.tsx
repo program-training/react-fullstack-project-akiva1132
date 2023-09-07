@@ -14,6 +14,11 @@ interface TriprContex {
     "image": string
     "activities": string[]
 }
+interface User {
+    "id"?: string
+    "email": string
+    "password"?: string
+}
 
 interface Props {
     message: string
@@ -28,7 +33,7 @@ interface ObgRes{
 
 export const UserLogIn: React.FC = () => {
     const [confirmMessage, setConfirmMessage] = useState<string | any>("");
-    const [trip, setTrip] = useState<TriprContex | null | any>({ email: "" });
+    const [trip, setTrip] = useState<User>({ email: "" });
     const routeContex = useContext(RouteContex);
     if (!routeContex) return null;
     const setModeRoute = routeContex.setModeRoute

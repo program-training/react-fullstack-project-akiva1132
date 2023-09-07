@@ -12,24 +12,24 @@ interface TriprContex {
 }
 interface tripContextType {
     trips: TriprContex[] | null
-    clickDelete:number | null
+    refreshTrips:number | null
 }
 
 interface tripContextProviderProps {
     children: React.ReactNode;
 }
-export const TripContex = createContext<tripContextType | null >(null);
+export const TripContex = createContext<tripContextType | null | any>(null);
 const TripContextProvider: React.FC<tripContextProviderProps> = (props) => {
-    const [clickDelete, setClick] = useState <number> (0);
+    const [refreshTrips, setRefreshTrips] = useState <number> (0);
     const [trips, getData] = useState<TriprContex[] | null>(null);
     useEffect(() => {
         fetch("http://127.0.0.1:3000/api/trips/")
             .then((data) => data.json())
             .then((data) => getData(data))
     }
-        , [clickDelete])
+        , [refreshTrips])
     return (
-        <TripContex.Provider value={ {trips,clickDelete, setClick, getData} }>
+        <TripContex.Provider value={ {trips, refreshTrips, setRefreshTrips, getData} }>
             {props.children}
             </TripContex.Provider>
     );

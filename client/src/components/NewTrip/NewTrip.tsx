@@ -1,4 +1,4 @@
-import { useContext, useState, FormEvent, useEffect } from 'react';
+import { useContext, useState, FormEvent } from 'react';
 import { RouteContex } from "../../RouteContex"
 import { TripContex } from "../../DataContex"
 import { KeyContex } from "../../UserLoginComtex"
@@ -16,8 +16,8 @@ interface TriprContex {
     "activities": string[]
 }
 
-
 export const NewTrip: React.FC = () => {
+    const [confirmMessage, setConfirmMessage] = useState<string>("");
     const keyContex = useContext(KeyContex);
     if (!keyContex) return null;
     const key = keyContex.key
@@ -32,18 +32,34 @@ export const NewTrip: React.FC = () => {
     if (!trip) { return }
     const tripcontext = useContext(TripContex);
     if (!tripcontext) return null;
-    const { setClick } = tripcontext
-    const { clickDelete } = tripcontext
+    const { setRefreshTrips } = tripcontext
+    const { refreshTrips } = tripcontext
     const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault()
         fetch("http://127.0.0.1:3000/api/trips/", { headers: header, method: "POST", body: JSON.stringify(trip), redirect: 'follow' })
             .then((data) => data.json())
-            .then((a) => a)
-        setClick(clickDelete + 1)
-        setModeRoute("Trips")
+            .then(result => {
+                if (result.error) {
+                    return setConfirmMessage(result.error);
+                } setConfirmMessage("sucsses")
+            })
+            .catch(e => console.log(e)
+            )
+        setRefreshTrips(refreshTrips + 1)
     }
     return (
         <div id="details">
+            {confirmMessage ? <div id="message">
+                <div id='divtext'>{confirmMessage}</div>
+                <div id='buttonsDiv'>
+                    <button
+                        onClick={() => setModeRoute("Home")}
+                        style={{ backgroundColor: "blue" }}>Home Page</button>
+                    {confirmMessage === "User already exists" ? <button
+                        onClick={() => setConfirmMessage("")}
+                        style={{ backgroundColor: "blue" }}>re-Register</button> : null}
+                </div>
+            </div> : null}
             <form onSubmit={handleSubmit} >
                 <div id='forms'>
                     <input

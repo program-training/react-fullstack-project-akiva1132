@@ -2,17 +2,11 @@ import { useContext, useState, FormEvent, useEffect } from 'react';
 import { RouteContex } from "../../RouteContex"
 import "./Register.css"
 
-interface TriprContex {
-    "id": string
-    "name": string
-    "destination": string
-    "startDate": string
-    "endDate": string
-    "description": string
-    "price": number
-    "image": string
-    "activities": string[]
-}
+interface User {
+        "id"?: string
+        "email": string
+        "password"?: string
+    }
 
 interface Props {
     message: string
@@ -23,7 +17,7 @@ header.append("Content-Type", "application/json");
 
 export const Register: React.FC = () => {
     const [confirmMessage, setConfirmMessage] = useState("");
-    const [trip, setTrip] = useState<TriprContex | null | any>({ email: "" });
+    const [trip, setTrip] = useState<User>({ email: "" });
     const routeContex = useContext(RouteContex);
     if (!routeContex) return null;
     const setModeRoute = routeContex.setModeRoute
