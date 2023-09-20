@@ -34,9 +34,9 @@ export const UserLogIn: React.FC = () => {
         if (props.message === undefined) {
             return setConfirmMessage(props.error);
         }
-        console.log(props.responseObj.token)
-        
-        setKey(props.responseObj.token);
+        console.log(props.responseObj.user)
+        localStorage.setItem('res', JSON.stringify(props.responseObj.user))
+        setKey({token:props.responseObj.token, name:props.responseObj.user.email});
         return (
             setConfirmMessage(props.message)
         )

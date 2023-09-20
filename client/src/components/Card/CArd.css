@@ -1,4 +1,4 @@
-.card{
+.card {
     width: 200px;
     display: flex;
     border: 3px black solid;
@@ -7,8 +7,19 @@
     align-items: center;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: space-around
+    justify-content: space-between;
+    padding: 0px;
 }
-.img{
-    width: 150px;
+.img {
+    max-height: 100%;
+    width:200px;
+    top: 0px;
+}
+#buttons {
+    min-height: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
 }

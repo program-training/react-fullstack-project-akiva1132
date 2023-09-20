@@ -3,6 +3,14 @@ import { tokenArray } from "../middleware/auth";
 import { User } from "../models/user";
 import { getUserByEmail, createUser } from "../utils/users";
 
+
+
+
+export const getUserNmae = (req: Request, res: Response) => {
+  const { email } = req.body;
+  const user = getUserByEmail(email)?.email
+  res.status(201).json(user);
+}
 // User registration
 export const registerController = (req: Request, res: Response) => {
   const { email, password, role } = req.body;
@@ -57,10 +65,12 @@ export const loginController = (
 
   // Generate an authentication token using the middleware function
   const authToken = generateAuthToken();
-  console.log(tokenArray);
+  console.log(user.email);
 
-  const responseObj = { user, token: authToken };
+  const responseObj = { user:user , token: authToken };
   // In a real application, you would store the token securely and handle token expiration
 
   res.json({ message: "Login successful", responseObj });
 };
+
+export { getUserByEmail };

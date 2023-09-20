@@ -24,7 +24,7 @@ export const TripUpdate = (props: Props) => {
     const [confirmMessage, setConfirmMessage] = useState<string>("");
     const keyContex = useContext(KeyContex);
     if (!keyContex) return null;
-    const key = keyContex.key
+    const key = keyContex.key.token
     const header = new Headers();
     header.append("authorization", key);
     header.append("Content-Type", "application/json");

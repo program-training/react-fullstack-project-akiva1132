@@ -8,7 +8,7 @@ export const Home: React.FC = () => {
     const setModeRoute = routeContex.setModeRoute
     return (
         <div id="divHome" >
-            <button
+            {/* <button
                 onClick={() => setModeRoute("Trips")} className="buttonHome">all trips
             </button>
             <button
@@ -17,8 +17,7 @@ export const Home: React.FC = () => {
             </button>
             <button
             onClick={() => {setModeRoute("Register")}}
-
-            className="buttonHome">registration</button>
+            className="buttonHome">registration</button> */}
         </div>
     );
 };

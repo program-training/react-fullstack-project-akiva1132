@@ -1,6 +1,6 @@
 #trips{
     display: flex;
-    width: 1000px;
+    width: 100%;
     flex-direction: row-reverse;
     align-content: center;
     flex-wrap: wrap;

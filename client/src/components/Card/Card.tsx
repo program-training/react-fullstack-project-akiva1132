@@ -22,7 +22,7 @@ export const Card: React.FC<Props> = (props: Props) => {
     const [authorizationMessage, setAuthorizationMessage] = useState<boolean>(false);
     const keyContex = useContext(KeyContex);
     if (!keyContex) return null;
-    const key = keyContex.key
+    const key = keyContex.key.token
 
     const header = new Headers();
     header.append("authorization", key);
@@ -36,10 +36,9 @@ export const Card: React.FC<Props> = (props: Props) => {
     const { refreshTrips } = tripcontext
     return (
         <div className="card">
-            {props.trip.name}
-
+            <img className="img" src={props.trip.image} alt="" />
             <div id="buttons">
-                <img className="img" src={props.trip.image} alt="" />
+                {props.trip.name}
                 <button onClick={() =>
                     fetch(`http://127.0.0.1:3000/api/trips/${props.trip.id}`, { headers: header, method: 'DELETE' })
                         .then(data => data.json())

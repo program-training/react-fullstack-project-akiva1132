@@ -1,4 +1,4 @@
-import { useContext, useState, FormEvent, useEffect } from 'react';
+import { useContext, useState, FormEvent } from 'react';
 import { RouteContex } from "../../RouteContex"
 import "./Register.css"
 
