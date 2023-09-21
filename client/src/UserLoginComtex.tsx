@@ -13,7 +13,8 @@ const storedToken = localStorage.getItem('res');
 export const KeyContex = createContext<keyContexType | null>(null);
 
 const KeyContexProvider: React.FC<keyContextProviderProps> = (props) => {
-    const [key, setKey] = useState<object>({ token: storedToken ? JSON.parse(storedToken).token : "Home", name: storedToken ? JSON.parse(storedToken).name : "guest" });
+    const [key, setKey] = useState<object>({ token: storedToken ? JSON.parse(storedToken).token : "Home",
+     name:"hello, " + (storedToken ? JSON.parse(storedToken).user.email.slice(0, JSON.parse(storedToken).user.email.indexOf('@')) : "guest") });
     return (
         <KeyContex.Provider value={{ key, setKey }}>
             {props.children}

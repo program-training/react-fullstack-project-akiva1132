@@ -14,9 +14,6 @@ function Routing() {
     const routeContex = useContext(RouteContex);
     if (!routeContex) return null;
     const modeRoute = routeContex.modeRoute
-
-
-
     return (
         <>
             {<Header />}

@@ -7,7 +7,7 @@ import Routing from "./components/Routing/Routing.tsx"
 
 
 
-function App() {
+const App: React.FC = () => {
   // {const PageManagementContex = useContext(pageManagementContex)}
   return (
     <TripContextProvider>

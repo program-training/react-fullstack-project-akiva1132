@@ -15,7 +15,7 @@ interface Props {
     error?: object
 
 }
-interface ObgRes{
+interface ObgRes {
     token: string
     user: object
 }
@@ -34,9 +34,8 @@ export const UserLogIn: React.FC = () => {
         if (props.message === undefined) {
             return setConfirmMessage(props.error);
         }
-        console.log(props.responseObj.user)
-        localStorage.setItem('res', JSON.stringify(props.responseObj.user))
-        setKey({token:props.responseObj.token, name:props.responseObj.user.email});
+        localStorage.setItem('res', JSON.stringify({ user: props.responseObj.user, token: props.responseObj.token }))
+        setKey({ token: props.responseObj.token, name: "hello, " + props.responseObj.user.email });
         return (
             setConfirmMessage(props.message)
         )
@@ -50,16 +49,16 @@ export const UserLogIn: React.FC = () => {
             .catch(error => console.log('error', error));
     }
     return (
-        <div id="details">
+        <div id="detailsLogIn">
             {confirmMessage ? <div id="message">
                 <div id='divtext'>{confirmMessage}</div>
                 <div id='buttonsDiv'><button
                     onClick={() => setModeRoute("Home")}
                     style={{ backgroundColor: "blue" }}>Home Page</button>
-                    {confirmMessage === "Invalid credentials"?<button
+                    {confirmMessage === "Invalid credentials" ? <button
                         onClick={() => setConfirmMessage("")}
-                        style={{ backgroundColor: "blue" }}>re-log in</button>: null}
-                    </div>
+                        style={{ backgroundColor: "blue" }}>re-log in</button> : null}
+                </div>
             </div> : null}
             <form onSubmit={handleSubmit} >
                 <div id='forms'>
@@ -72,9 +71,11 @@ export const UserLogIn: React.FC = () => {
                         value={trip.password}
                         onChange={(e) => setTrip({ ...trip, ["password"]: e.target.value })}
                         className="input" type="text" placeholder="enter password" />
+                    <button id='okButton' >ok</button>
                 </div>
-                <button >ok</button>
             </form>
+            <div id='newUserButton'><button onClick={() => { setModeRoute("Register") }} >Do not have an account?
+            </button></div>    
         </div>
     );
 }

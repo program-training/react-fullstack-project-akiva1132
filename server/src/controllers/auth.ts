@@ -65,7 +65,7 @@ export const loginController = (
 
   // Generate an authentication token using the middleware function
   const authToken = generateAuthToken();
-  console.log(user.email);
+  console.log(user);
 
   const responseObj = { user:user , token: authToken };
   // In a real application, you would store the token securely and handle token expiration

@@ -1,21 +1,38 @@
 import { useContext, useState, FormEvent } from 'react';
 import { RouteContex } from "../../RouteContex"
+import { KeyContex } from "../../UserLoginComtex"
 import "./Register.css"
 
 interface User {
-        "id"?: string
-        "email": string
-        "password"?: string
-    }
+    "id"?: string
+    "email": string
+    "password"?: string
+}
 
 interface Props {
     message: string
     responseObj: object
 }
+
+interface PropsLogIn {
+    message: string
+    responseObj: ObgRes
+    error?: object
+}
+interface ObgRes {
+    token: string
+    user: object
+}
+
+
 const header = new Headers();
 header.append("Content-Type", "application/json");
 
 export const Register: React.FC = () => {
+    const keyContex = useContext(KeyContex);
+    if (!keyContex) return null;
+    const setKey = keyContex.setKey
+
     const [confirmMessage, setConfirmMessage] = useState("");
     const [trip, setTrip] = useState<User>({ email: "" });
     const routeContex = useContext(RouteContex);
@@ -33,11 +50,25 @@ export const Register: React.FC = () => {
             .then(response => response.text())
             .then(result => {
                 if (JSON.parse(result).error) {
-                    return setConfirmMessage(JSON.parse(result).error);;
+                    return setConfirmMessage(JSON.parse(result).error);
                 } ShowingKey(JSON.parse(result))
+                handleSubmitLogIn()
             })
             .catch(error => console.log('error', error));
     }
+    const logIn = (props: PropsLogIn) => {
+        localStorage.setItem('res', JSON.stringify({ user: props.responseObj.user, token: props.responseObj.token }))
+        setKey({ token: props.responseObj.token, name: "hello, " + props.responseObj.user.email });
+
+    }
+    const handleSubmitLogIn = (): void => {
+        fetch("http://127.0.0.1:3000/api/auth/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(trip), redirect: 'follow' })
+            .then(response => response.text())
+            .then(result => logIn(JSON.parse(result))
+            )
+            .catch(error => console.log('error', error));
+    }
+
     return (
         <div id="details">
             {confirmMessage ? <div id="message">

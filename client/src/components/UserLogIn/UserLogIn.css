@@ -1,4 +1,4 @@
-#details{
+#detailsLogIn{
     display: flex;
     width: 400px;
     min-height: 450px;
@@ -9,9 +9,6 @@
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
-}
-#details{
-    display: flex;
 }
 #forms{
     display: flex;
@@ -51,4 +48,14 @@
     width: 300px;
     align-items: center;
     justify-content: space-around;
+}
+#okButton{
+width: 100px;
+height: 30px;
+}
+#newUserButton{
+    width: 300px;
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 375px;
 }

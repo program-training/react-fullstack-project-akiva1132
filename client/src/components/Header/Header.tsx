@@ -26,10 +26,7 @@ export const Header: React.FC = () => {
                 <button
                     onClick={() => setModeRoute("Trips")} className="buttonHome">all trips
                 </button>
-                <button
-                    onClick={() => { setModeRoute("Register") }}
-                    className="buttonHome"><div style={{ fontSize: "30px" }}><AiOutlineUserAdd /></div>
-                </button>
+
                 <button
                     onClick={() => { setModeRoute("UserLogIn") }}
                     className="buttonHome"><div style={{ fontSize: "30px" }}><BiLogIn /></div>
